@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js是脚本语言</title>
+    <script src="../js/jquery-3.3.1.js"></script>
+
+</head>
+<body >
+    <h1>js脚本语言</h1>
+    <p>请输入数字，不是数字则会提示</p>
+    <input id="demo1" type="text"><b id="demo2"></b><p></p>
+    <button type="button" onclick="showTime()">点击提交</button>
+
+    <!--<div><img src="../img/JDK和Cglib动态代理.png" height="354" width="720" id="mm"/></div>-->
+
+    <!-- 在form标签中添加 onsubmit事件-->
+    <form action="success.html" method="post" id="myform" onsubmit="return checkAll()">
+
+        <!-- 在user的input的标签中添加 onfocus和onblur事件, 并在后面添加一个span-->
+        请输入用户名：<input id="user" name="user" type="text" class="in" onfocus="showUserTips()" onblur="checkUser()"/>
+        <span id="userSpan"></span><br/>
+
+        <!-- 在email的input的标签中添加 onfocus和onblur事件, 并在后面添加一个span-->
+        请输入邮箱：<input id="email" name="email" type="text" class="in" onfocus="showEmailTips()" onblur="checkEmail()"/>
+        <span id="emailSpan"></span>
+    </form>
+
+</body>
+<script type="text/javascript">
+
+    function showTime() {
+        var x = document.getElementById("demo2");
+        x.innerHTML=null
+        var id = document.getElementById("demo1");//找到元素
+        var value = id.value;
+        if (value=""||isNaN(value)){
+            alert("不是数字")
+        }else {
+
+            x.innerHTML="提交成功"
+        }
+    }
+    
+    function changeImage() {
+        var i=1;
+        document.getElementById("mm").src="../img/"+i+".png";
+        i++;
+        if (i==5){
+            i=0;
+        }
+        //延迟3s时间调用方法
+        window.setInterval("changeImage()",3000)
+    }
+    function showUserTips() {
+        document.getElementById("userSpan").innerHTML="请输入用户名"
+    }
+    function showEmailTips() {
+        document.getElementById("emailSpan").innerHTML="请输入邮箱"
+    }
+    function checkUser() {
+        var userName = document.getElementById("user").value;
+        var reg =  /^[a-zA-Z][a-zA-Z0-9]{3,15}$/;
+        if (userName=="" || userName==null||reg.test(userName)==false){
+            document.getElementById("userSpan").innerHTML="用户名错误"
+            return false;
+        }else {
+            document.getElementById("userSpan").innerHTML="用户名正确"
+            return true;
+        }
+    }
+    function checkEmail() {
+        var email = document.getElementById("email").value;
+        var reg =  /^\w+@\w+(.[a-zA-Z]{2,3}){1,2}$/;
+        if (email=="" || email==null||reg.test(email)==false){
+            document.getElementById("emailSpan").innerHTML="邮箱格式错误"
+            return false;
+        }else {
+            document.getElementById("emailSpan").innerHTML="邮箱格式正确"
+            return true;
+        }
+    }
+    function checkAll() {
+        if (checkUser()&&checkEmail()){
+            return true;
+        }else {
+            return false
+        }
+    }
+</script>
+
+</html>
