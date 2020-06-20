@@ -11,5 +11,6 @@ public class MapperImpl implements Mapper {
     @Override
     public void save() {
         System.out.println("mapperimpl---save()");
+        System.out.println("这是测试");
     }
 }
